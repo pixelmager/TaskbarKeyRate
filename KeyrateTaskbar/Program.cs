@@ -95,92 +95,34 @@ namespace KeyRateTaskbar
                 mi.Enabled = false;
             }
 
-            //TODO: convert to rate
+            //int[] rate_ms = new int[]{ 1, 5, 10, 15, 20, 30, 40, 50, 100 };
+            int[] rate_ms = new int[] { 15, 30, 45, 60, 75 }; //note: after testing, increments in 15ms
+
+            for ( int i=0,n=rate_ms.Length; i<n; ++i )
             {
-                MenuItem mi = trayMenu.MenuItems.Add("5ms", MenuItemNew_Click);
-                mi.Tag = new SetRepeatMs { RepeatRateMs = 5 };
-            }
-            {
-                MenuItem mi = trayMenu.MenuItems.Add("10ms", MenuItemNew_Click);
-                mi.Tag = new SetRepeatMs { RepeatRateMs = 10 };
-            }
-            {
-                MenuItem mi = trayMenu.MenuItems.Add("15ms", MenuItemNew_Click);
-                mi.Tag = new SetRepeatMs{ RepeatRateMs = 15 };
-            }
-            {
-                MenuItem mi = trayMenu.MenuItems.Add("20ms", MenuItemNew_Click);
-                mi.Tag = new SetRepeatMs { RepeatRateMs = 20 };
-            }
-            {
-                MenuItem mi = trayMenu.MenuItems.Add("25ms", MenuItemNew_Click);
-                mi.Tag = new SetRepeatMs { RepeatRateMs = 25 };
-            }
-            {
-                MenuItem mi = trayMenu.MenuItems.Add("30ms", MenuItemNew_Click);
-                mi.Tag = new SetRepeatMs { RepeatRateMs = 30 };
-            }
-            {
-                MenuItem mi = trayMenu.MenuItems.Add("40ms", MenuItemNew_Click);
-                mi.Tag = new SetRepeatMs { RepeatRateMs = 40 };
-            }
-            {
-                MenuItem mi = trayMenu.MenuItems.Add("50ms", MenuItemNew_Click);
-                mi.Tag = new SetRepeatMs { RepeatRateMs = 50 };
+                MenuItem mi = trayMenu.MenuItems.Add( rate_ms[i].ToString() + "ms (" + Math.Floor(1000.0f/(float)rate_ms[i]).ToString() + "Hz)", MenuItemNew_Click);
+                mi.Tag = new SetRepeatMs { RepeatRateMs = rate_ms[i] };
             }
 
             trayMenu.MenuItems.Add("-");
-
             {
                 MenuItem mi = trayMenu.MenuItems.Add("Delay");
                 mi.Enabled = false;
             }
+
+            int[] delay_ms = new int[]{ 50, 100, 125, 150, 175, 200, 250, 300, 400, 500 };
+
+            for (int i = 0, n = delay_ms.Length; i < n; ++i)
             {
-                MenuItem mi = trayMenu.MenuItems.Add("50ms", MenuItemNew_Click);
-                mi.Tag = new SetDelayMs { DelayMs = 50 };
-            }
-            {
-                MenuItem mi = trayMenu.MenuItems.Add("100ms", MenuItemNew_Click);
-                mi.Tag = new SetDelayMs { DelayMs = 100 };
-            }
-            {
-                MenuItem mi = trayMenu.MenuItems.Add("125ms", MenuItemNew_Click);
-                mi.Tag = new SetDelayMs { DelayMs = 125 };
-            }
-            {
-                MenuItem mi = trayMenu.MenuItems.Add("150ms", MenuItemNew_Click);
-                mi.Tag = new SetDelayMs { DelayMs = 150 };
-            }
-            {
-                MenuItem mi = trayMenu.MenuItems.Add("175ms", MenuItemNew_Click);
-                mi.Tag = new SetDelayMs { DelayMs = 175 };
-            }
-            {
-                MenuItem mi = trayMenu.MenuItems.Add("200ms", MenuItemNew_Click);
-                mi.Tag = new SetDelayMs{ DelayMs = 200 };
-            }
-            {
-                MenuItem mi = trayMenu.MenuItems.Add("250ms", MenuItemNew_Click);
-                mi.Tag = new SetDelayMs { DelayMs = 250 };
-            }
-            {
-                MenuItem mi = trayMenu.MenuItems.Add("300ms", MenuItemNew_Click);
-                mi.Tag = new SetDelayMs { DelayMs = 300 };
-            }
-            {
-                MenuItem mi = trayMenu.MenuItems.Add("400ms", MenuItemNew_Click);
-                mi.Tag = new SetDelayMs { DelayMs = 400 };
-            }
-            {
-                MenuItem mi = trayMenu.MenuItems.Add("500ms", MenuItemNew_Click);
-                mi.Tag = new SetDelayMs { DelayMs = 500 };
+                MenuItem mi = trayMenu.MenuItems.Add(delay_ms[i].ToString() + "ms", MenuItemNew_Click);
+                mi.Tag = new SetDelayMs { DelayMs = delay_ms[i] };
             }
 
             trayMenu.MenuItems.Add("-");
             trayMenu.MenuItems.Add("Disable", DisableKeyrateOverride);
             trayMenu.MenuItems.Add("Exit", OnExit);
 
-            //TODO: remember previous
+            //TODO: query for previous at startup
             //TODO: presets
 
             trayIcon = new NotifyIcon();

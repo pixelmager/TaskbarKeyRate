@@ -95,7 +95,7 @@ namespace KeyRateTaskbar
                 mi.Enabled = false;
             }
 
-            //int[] rate_ms = new int[]{ 1, 5, 10, 15, 20, 30, 40, 50, 100 };
+            //int[] rate_ms = new int[]{ 1, 5, 10, 15, 20, 30, 40, 50, 100 }; //note: for testing
             int[] rate_ms = new int[] { 15, 30, 45, 60, 75 }; //note: after testing, increments in 15ms
 
             for ( int i=0,n=rate_ms.Length; i<n; ++i )

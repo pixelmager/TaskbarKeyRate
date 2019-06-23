@@ -9,8 +9,11 @@ extern "C" __declspec(dllexport) void SetKeyRate( int repeatrate_ms, int delay_m
 	if ( repeatrate_ms > 0 && delay_ms > 0 )
 	{
 		keys.dwFlags = FKF_FILTERKEYSON|FKF_AVAILABLE;
-		keys.iRepeatMSec = repeatrate_ms;
-		keys.iDelayMSec = delay_ms;
+		keys.iRepeatMSec = repeatrate_ms; // Repeat Rate
+		keys.iDelayMSec = delay_ms; // Delay Until Repeat
+
+		keys.iWaitMSec = 0; // Acceptance Delay
+		keys.iBounceMSec = 0; // Debounce Time
 	}
 
 	SystemParametersInfo (SPI_SETFILTERKEYS, 0, (LPVOID) &keys, 0);

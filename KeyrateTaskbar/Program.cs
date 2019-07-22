@@ -127,11 +127,15 @@ namespace KeyRateTaskbar
 
             trayIcon = new NotifyIcon();
             trayIcon.Text = "KeyRate Control";
-            trayIcon.Icon = new Icon(SystemIcons.Information, 40, 40);
+            trayIcon.Icon = KeyrateTaskbar.Properties.Resources.ResourceManager.GetObject("Icon1") as Icon;
 
             // Add menu to tray icon and show it.
             trayIcon.ContextMenu = trayMenu;
             trayIcon.Visible = true;
+
+            CurrentRepeatRateMs = rate_ms[0];
+            CurrentDelayMs = delay_ms[4];
+            Apply();
         }
 
         protected override void OnLoad(EventArgs e)
@@ -156,6 +160,20 @@ namespace KeyRateTaskbar
             }
 
             base.Dispose(isDisposing);
+        }
+
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SysTrayApp));
+            this.SuspendLayout();
+            // 
+            // SysTrayApp
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "SysTrayApp";
+            this.ResumeLayout(false);
+
         }
     }
 }

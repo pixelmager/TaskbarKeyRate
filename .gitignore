@@ -9,3 +9,5 @@ KeyrateTaskbar/obj/
 keyrate_cpp/Release/
 KeyRateTest/Debug/
 KeyRateTest/Release/
+*.ipdb
+*.iobj
